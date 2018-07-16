@@ -1,24 +1,30 @@
+import java.util.HashMap;
 import java.util.Map;
 
-public class Course {
+class Course {
 
-    CourseEnums.courseCode courseCode;
-    CourseEnums.courseName courseName;
-    CourseEnums.status status;
 
-    static int numberOfStudentsInCourse;
+    private static Map<String, String> coursesOffered = new HashMap<>();
+    private String courseCode;
+    private String courseName;
+    private CourseStatus courseStatus;
 
-    public Course(CourseEnums.courseCode courseCode) {
+
+    Course(String courseCode) {
+
         this.courseCode = courseCode;
-
-        this.status = CourseEnums.status.inProgress;
+        this.courseName = coursesOffered.get(courseCode);
+        this.courseStatus = CourseStatus.inProgress;
     }
 
-    static class CourseEnums {
-        enum courseCode{MAT1, PHY1, HIS1, GOE1};
-        enum courseName{Math, Physics, History, Geography};
-        enum status{failed, passed, inProgress};
-      //  Map<CourseEnums.courseCode, CourseEnums.courseName> = new
+    static void addNewCourse(String courseCode, String courseName) {
+        coursesOffered.put(courseCode, courseName);
     }
+
+    static void removeCourse(String courseCode) {
+        coursesOffered.remove(courseCode);
+    }
+
+    enum CourseStatus {failed, passed, inProgress}
 }
 

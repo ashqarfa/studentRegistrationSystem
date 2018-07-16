@@ -7,7 +7,7 @@ class Student {
     String lastName;
     int studentID;
     private Account account;
-    List<Course> courses = new ArrayList<>();
+    List<Course> studentCourses = new ArrayList<>();
 
     Student(String firstName, String lastName, int studentID) {
         this.firstName = firstName;
@@ -21,10 +21,6 @@ class Student {
 
     void setAccount(Account account) {
         this.account = account;
-    }
-
-    void addCourse(Course course) {
-        this.courses.add(course);
     }
 
 }
