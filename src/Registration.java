@@ -36,6 +36,10 @@ public class Registration {
         return new Account(studentEmail, password, student);
     }
 
+    void registerStudentInCourse(Student student, Course course){
+        student.addCourse(course);
+    }
+
     void clear() {
         students.clear();
         studentAccounts.clear();

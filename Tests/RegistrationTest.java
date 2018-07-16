@@ -51,4 +51,10 @@ public class RegistrationTest {
         IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, classUnderTest.getStudents().get(n).studentID));
         //assertEquals(1, classUnderTest.getStudents().get(0).studentID);
     }
+
+    @Test
+    public void testAddCourse() {
+        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1), new Course(Course.CourseEnums.courseCode.HIS1 ));
+
+    }
 }
