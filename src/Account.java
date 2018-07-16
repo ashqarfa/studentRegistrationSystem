@@ -1,12 +1,17 @@
-public class Account {
+class Account {
 
-    String email;
-    String password;
-    Student student;
+    private String email;
+    private String password;
+    private Student student;
 
 
-    public Account(String email, String password) {
+    Account(String email, String password, Student student) {
         this.email = email;
+        this.password = password;
+        this.student = student;
+    }
+
+    void setPassword(String password) {
         this.password = password;
     }
 }

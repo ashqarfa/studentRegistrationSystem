@@ -1,17 +1,20 @@
 import java.util.List;
 
-public class AccountCreator {
+class AccountCreator {
 
-    String createUniqueEmail(Student student, List<Student> studentList) {
+    static String createUniqueEmail(Student student, List<Student> studentList) {
 
-        //if(Student.checkNameDuplicate(student, studentList))
+        long numDuplicates = Student.numberOfNameDuplicates(student, studentList);
 
-        return "hi";
-
+        if (numDuplicates == 0) return simpleEmail(student);
+        else return complexEmail(student, numDuplicates);
     }
 
-    String createRandomPassword() {
+    private static String simpleEmail(Student student) {
+        return student.firstName + "." + student.lastName + "@mail.university.com";
+    }
 
-        return "hi";
+    private static String complexEmail(Student student, long numDuplicates) {
+        return student.firstName + "." + student.lastName + (numDuplicates + 1) + "@mail.university.com";
     }
 }

@@ -1,19 +1,23 @@
 import java.util.List;
 
-public class Student {
+class Student {
 
     String firstName;
     String lastName;
-    int studentID;
-    Account account;
+    private int studentID;
+    private Account account;
 
-    public Student(String firstName, String lastName, int studentID) {
+    Student(String firstName, String lastName, int studentID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentID = studentID;
     }
 
-    public static boolean checkNameDuplicate(Student student, List<Student> students) {
-        return students.stream().anyMatch(st -> (st.firstName.equals(student.firstName)) && (st.lastName.equals(student.lastName)));
+    static long numberOfNameDuplicates(Student student, List<Student> students) {
+        return students.stream().filter(st -> (st.firstName.equals(student.firstName)) && (st.lastName.equals(student.lastName))).count();
+    }
+
+    void setAccount(Account account) {
+        this.account = account;
     }
 }
