@@ -2,7 +2,7 @@ import java.util.List;
 
 class AccountCreator {
 
-    static String createUniqueEmail(Student student, List<Student> studentList) {
+    static String createUniqueEmailAddress(Student student, List<Student> studentList) {
 
         long numDuplicates = Student.numberOfNameDuplicates(student, studentList);
 
@@ -11,10 +11,10 @@ class AccountCreator {
     }
 
     private static String simpleEmail(Student student) {
-        return student.firstName + "." + student.lastName + "@mail.university.com";
+        return student.firstName.toLowerCase() + "." + student.lastName.toLowerCase() + "@mail.university.com";
     }
 
     private static String complexEmail(Student student, long numDuplicates) {
-        return student.firstName + "." + student.lastName + (numDuplicates + 1) + "@mail.university.com";
+        return student.firstName.toLowerCase() + "." + student.lastName.toLowerCase() + (numDuplicates + 1) + "@mail.university.com";
     }
 }
