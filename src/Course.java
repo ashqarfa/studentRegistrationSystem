@@ -25,6 +25,10 @@ class Course {
         coursesOffered.remove(courseCode);
     }
 
+    static Map<String, String> getCoursesOffered(){
+        return coursesOffered;
+    }
+
     enum CourseStatus {failed, passed, inProgress}
 }
 
