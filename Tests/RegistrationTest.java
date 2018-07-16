@@ -54,7 +54,7 @@ public class RegistrationTest {
 
     @Test
     public void testAddCourse() {
-        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1), new Course(Course.CourseEnums.courseCode.HIS1 ));
+        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1), new Course("History"));
 
     }
 }

@@ -40,8 +40,5 @@ public class Registration {
         student.addCourse(course);
     }
 
-    void clear() {
-        students.clear();
-        studentAccounts.clear();
-    }
+
 }
