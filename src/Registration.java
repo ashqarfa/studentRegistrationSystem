@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Registration {
+class Registration {
 
     private List<Student> students = new ArrayList<>();
     private List<Account> studentAccounts = new ArrayList<>();
 
     private int numberOfStudents = 0;
 
-    public List<Student> getStudents() {
+    List<Student> getStudents() {
         return students;
     }
 
-    public List<Account> getStudentAccounts() {
+    List<Account> getStudentAccounts() {
         return studentAccounts;
     }
 
@@ -36,9 +36,7 @@ public class Registration {
         return new Account(studentEmail, password, student);
     }
 
-    void registerStudentInCourse(Student student, Course course){
-        student.addCourse(course);
+    void registerStudentInCourse(Student student, String courseCode) {
+        student.studentCourses.add(new Course(courseCode));
     }
-
-
 }
