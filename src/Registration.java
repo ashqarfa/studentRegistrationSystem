@@ -35,4 +35,9 @@ public class Registration {
         String studentEmail = AccountCreator.createUniqueEmailAddress(student, students);
         return new Account(studentEmail, password, student);
     }
+
+    void clear() {
+        students.clear();
+        studentAccounts.clear();
+    }
 }

@@ -4,7 +4,7 @@ class Student {
 
     String firstName;
     String lastName;
-    private int studentID;
+    int studentID;
     private Account account;
 
     Student(String firstName, String lastName, int studentID) {

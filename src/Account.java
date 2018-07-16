@@ -1,8 +1,8 @@
 class Account {
 
-    private String email;
-    private String password;
-    private Student student;
+    String email;
+    String password;
+    Student student;
 
 
     Account(String email, String password, Student student) {
