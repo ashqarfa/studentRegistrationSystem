@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.activity.InvalidActivityException;
@@ -11,12 +12,29 @@ import static org.junit.Assert.assertThat;
 
 
 public class RegistrationTest {
+    private Registration registrationClass;
 
-    private Registration registrationClass = new Registration();
-    
+    @Before
+    public void setUp() {
+        registrationClass = new Registration();
+    }
+
     @Test
-    public void studentRegistrationTest() {
+    public void testGetNumberOfStudents() {
+        //Arrange
+        registrationClass.registerStudent("Farah", "Ashqar", "abcd");
+        //Assert
+        assertEquals(1, registrationClass.getNumberOfStudents());
+        assertEquals(1, registrationClass.getStudentAccounts().size());
+        assertEquals(1, registrationClass.getStudents().size());
+        assertEquals("Farah", registrationClass.getStudents().get(0).getFirstName());
+        assertEquals("Ashqar", registrationClass.getStudents().get(0).getLastName());
+        assertEquals("farah.ashqar@mail.university.com", registrationClass.getStudentAccounts().get(0).getEmail());
+        assertEquals("abcd", registrationClass.getStudentAccounts().get(0).getPassword());
+    }
 
+    @Test
+    public void testMultiRegistration() {
         registrationClass.registerStudent("Farah", "Ashqar", "abcd");
         registrationClass.registerStudent("Jozef", "Bernat", "efgh");
         registrationClass.registerStudent("Bob", "Smith", "ijkl");
@@ -30,16 +48,6 @@ public class RegistrationTest {
         assertEquals(8, registrationClass.getStudentAccounts().size());
         assertEquals(8, registrationClass.getStudents().size());
 
-        assertEquals("Farah", registrationClass.getStudents().get(0).getFirstName());
-        assertEquals("Ashqar", registrationClass.getStudents().get(0).getLastName());
-        assertEquals("James", registrationClass.getStudents().get(4).getFirstName());
-        assertEquals("Smith", registrationClass.getStudents().get(4).getLastName());
-
-        assertEquals("farah.ashqar@mail.university.com", registrationClass.getStudentAccounts().get(0).getEmail());
-        assertEquals("ed.sheeran@mail.university.com", registrationClass.getStudentAccounts().get(6).getEmail());
-        assertEquals("abcd", registrationClass.getStudentAccounts().get(0).getPassword());
-        assertEquals("mno", registrationClass.getStudentAccounts().get(3).getPassword());
-
         IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, registrationClass.getStudents().get(n).getStudentID()));
     }
 
@@ -48,7 +56,8 @@ public class RegistrationTest {
 
         registrationClass.registerStudent("Jozef", "Bernat", "efgh");
         Course.addNewCourse("MAT1", "Math");
-        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(0), "MAT1");
+        Student student = registrationClass.getStudents().get(0);
+        student.registerStudentInCourse("MAT1");
     }
 
     @Test(expected = InvalidActivityException.class)
@@ -57,7 +66,8 @@ public class RegistrationTest {
         registrationClass.registerStudent("Farah", "Ashqar", "abcd");
         Course.addNewCourse("HIS1", "History");
         Course.removeCourse("HIS1");
-        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(0), "HIS1");
+        Student student = registrationClass.getStudents().get(0);
+        student.registerStudentInCourse("HIS1");
     }
 
 
@@ -69,15 +79,13 @@ public class RegistrationTest {
         Course.addNewCourse("HIS1", "History");
         Course.addNewCourse("MAT1", "Math");
 
-        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(0), "MAT1");
-        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(0), "HIS1");
-
-        List<Course> studentCourses = registrationClass.getStudents().get(0).getStudentCourses();
+        Student student = registrationClass.getStudents().get(0);
+        student.registerStudentInCourse("MAT1");
+        student.registerStudentInCourse("HIS1");
+        List<Course> studentCourses = student.getStudentCourses();
         List<Course> expectedCourses = new ArrayList<>();
         expectedCourses.add(new Course("MAT1"));
         expectedCourses.add(new Course("HIS1"));
-
         assertThat(studentCourses, containsInAnyOrder(expectedCourses.toArray()));
-
     }
 }

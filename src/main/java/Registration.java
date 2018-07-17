@@ -1,4 +1,3 @@
-import javax.activity.InvalidActivityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ class Registration {
     void registerStudent(String firstName, String lastName, String password) {
 
         Student newStudent = new Student(firstName, lastName, numberOfStudents + 1);
-        Account newAccount = AccountCreator.createAccount(newStudent, password, students);
+        Account newAccount = Account.createAccount(newStudent, password, students);
         newStudent.setAccount(newAccount);
 
         studentAccounts.add(newAccount);
@@ -31,11 +30,4 @@ class Registration {
         numberOfStudents++;
     }
 
-
-    void registerStudentInCourse(Student student, String courseCode) throws InvalidActivityException {
-        if (Course.getCoursesOffered().containsKey(courseCode))
-            student.getStudentCourses().add(new Course(courseCode));
-        else
-            throw new InvalidActivityException("Course does not exist");
-    }
 }

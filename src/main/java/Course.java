@@ -25,6 +25,10 @@ class Course {
         coursesOffered.remove(courseCode);
     }
 
+    static boolean isOffered(String courseCode) {
+        return coursesOffered.containsKey(courseCode);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

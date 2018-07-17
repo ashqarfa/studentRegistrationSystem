@@ -33,7 +33,7 @@ public class AccountCreatorTest {
 
         List<Student> studentList = new ArrayList<>();
 
-        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
     }
@@ -48,7 +48,7 @@ public class AccountCreatorTest {
         studentList.add(jozefBernat2);
         studentList.add(willSmith);
 
-        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
     }
@@ -65,7 +65,7 @@ public class AccountCreatorTest {
         studentList.add(willSmith);
         studentList.add(farahAshqar2);
 
-        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
 
@@ -84,7 +84,7 @@ public class AccountCreatorTest {
         studentList.add(farahAshqar2);
         studentList.add(farahAshqar3);
 
-        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
 

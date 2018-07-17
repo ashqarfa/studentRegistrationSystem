@@ -1,3 +1,4 @@
+import javax.activity.InvalidActivityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,12 @@ class Student {
 
     static long numberOfNameDuplicates(Student student, List<Student> students) {
         return students.stream().filter(st -> (st.firstName.equals(student.firstName)) && (st.lastName.equals(student.lastName))).count();
+    }
+
+    void registerStudentInCourse(String courseCode) throws InvalidActivityException {
+        if (!Course.isOffered(courseCode))
+            throw new InvalidActivityException("Course does not exist");
+        this.studentCourses.add(new Course(courseCode));
     }
 
     String getFirstName() {
