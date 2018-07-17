@@ -13,10 +13,6 @@ class Course {
         this.courseName = coursesOffered.get(courseCode);
     }
 
-    static Map<String, String> getCoursesOffered() {
-        return coursesOffered;
-    }
-
     static void addNewCourse(String courseCode, String courseName) {
         coursesOffered.put(courseCode, courseName);
     }
