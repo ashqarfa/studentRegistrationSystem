@@ -10,8 +10,4 @@ class Account {
         this.password = password;
         this.student = student;
     }
-
-    void setPassword(String password) {
-        this.password = password;
-    }
 }

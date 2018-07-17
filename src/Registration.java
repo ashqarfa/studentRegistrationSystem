@@ -5,7 +5,6 @@ class Registration {
 
     private List<Student> students = new ArrayList<>();
     private List<Account> studentAccounts = new ArrayList<>();
-
     private int numberOfStudents = 0;
 
     List<Student> getStudents() {
@@ -36,7 +35,7 @@ class Registration {
         return new Account(studentEmail, password, student);
     }
 
-    final void registerStudentInCourse(Student student, String courseCode) {
+    void registerStudentInCourse(Student student, String courseCode) {
         student.studentCourses.add(new Course(courseCode));
     }
 }

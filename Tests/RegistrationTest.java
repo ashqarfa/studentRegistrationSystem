@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
@@ -7,57 +6,63 @@ import static org.junit.Assert.assertEquals;
 
 public class RegistrationTest {
 
-    private Registration classUnderTest;
+    private Registration registrationClass = new Registration();
+    
+    @Test
+    public void studentRegistrationTest() {
 
-    @Before
-    public void setUp() {
-        classUnderTest = new Registration();
-        classUnderTest.registerStudent("Farah", "Ashqar", "abcd");
-        classUnderTest.registerStudent("Jozef", "Bernat", "efgh");
-        classUnderTest.registerStudent("Bob", "Smith", "ijkl");
-        classUnderTest.registerStudent("Issa", "Ashqar", "mno");
-        classUnderTest.registerStudent("James", "Smith", "pqrs");
-        classUnderTest.registerStudent("Farah", "Hello", "tu");
-        classUnderTest.registerStudent("Ed", "Sheeran", "vwx");
-        classUnderTest.registerStudent("William", "Ashqar", "yz");
-        Course.addNewCourse("HIS1", "History");
-        Course.addNewCourse("MAT1", "Math");
+        registrationClass.registerStudent("Farah", "Ashqar", "abcd");
+        registrationClass.registerStudent("Jozef", "Bernat", "efgh");
+        registrationClass.registerStudent("Bob", "Smith", "ijkl");
+        registrationClass.registerStudent("Issa", "Ashqar", "mno");
+        registrationClass.registerStudent("James", "Smith", "pqrs");
+        registrationClass.registerStudent("Farah", "Hello", "tu");
+        registrationClass.registerStudent("Ed", "Sheeran", "vwx");
+        registrationClass.registerStudent("William", "Ashqar", "yz");
+
+        assertEquals(8, registrationClass.getNumberOfStudents());
+        assertEquals(8, registrationClass.getStudentAccounts().size());
+        assertEquals(8, registrationClass.getStudents().size());
+
+        assertEquals("Farah", registrationClass.getStudents().get(0).firstName);
+        assertEquals("Ashqar", registrationClass.getStudents().get(0).lastName);
+        assertEquals("James", registrationClass.getStudents().get(4).firstName);
+        assertEquals("Smith", registrationClass.getStudents().get(4).lastName);
+
+        assertEquals("farah.ashqar@mail.university.com", registrationClass.getStudentAccounts().get(0).email);
+        assertEquals("ed.sheeran@mail.university.com", registrationClass.getStudentAccounts().get(6).email);
+        assertEquals("abcd", registrationClass.getStudentAccounts().get(0).password);
+        assertEquals("mno", registrationClass.getStudentAccounts().get(3).password);
+
+        IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, registrationClass.getStudents().get(n).studentID));
     }
 
     @Test
-    public void checkRightNumberOfStudentsAndAccounts() {
+    public void testAddingCourses() {
 
-        assertEquals(8, classUnderTest.getNumberOfStudents());
-        assertEquals(8, classUnderTest.getStudentAccounts().size());
-        assertEquals(8, classUnderTest.getStudents().size());
+        registrationClass.registerStudent("Farah", "Ashqar", "abcd");
+        registrationClass.registerStudent("Jozef", "Bernat", "efgh");
+
+        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(0), "MAT1");
+        
 
     }
 
-    @Test
-    public void checkRightNamesAndAccountsInLists() {
 
-
-        assertEquals("Farah", classUnderTest.getStudents().get(0).firstName);
-        assertEquals("Ashqar", classUnderTest.getStudents().get(0).lastName);
-        assertEquals("James", classUnderTest.getStudents().get(4).firstName);
-        assertEquals("Smith", classUnderTest.getStudents().get(4).lastName);
-
-        assertEquals("farah.ashqar@mail.university.com", classUnderTest.getStudentAccounts().get(0).email);
-        assertEquals("ed.sheeran@mail.university.com", classUnderTest.getStudentAccounts().get(6).email);
-        assertEquals("abcd", classUnderTest.getStudentAccounts().get(0).password);
-        assertEquals("mno", classUnderTest.getStudentAccounts().get(3).password);
-    }
-
-    @Test
-    public void checkRightStudentIDs() {
-        IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, classUnderTest.getStudents().get(n).studentID));
-    }
-
-    @Test
-    public void chceckRegisterStudentToCourse() {
-        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1),"MAT1");
-        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1),"HIS1");
-        assertEquals("MAT1",classUnderTest.getStudents().get(1).studentCourses.get(0).courseCode);
-        assertEquals("HIS1",classUnderTest.getStudents().get(1).studentCourses.get(1).courseCode);
-    }
+    //    @Before
+//    public void setUp() {
+//
+//
+//        Course.addNewCourse("HIS1", "History");
+//        Course.addNewCourse("MAT1", "Math");
+//    }
+//
+//
+//    @Test
+//    public void chceckRegisterStudentToCourse() {
+//        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(1),"MAT1");
+//        registrationClass.registerStudentInCourse(registrationClass.getStudents().get(1),"HIS1");
+//        assertEquals("MAT1",registrationClass.getStudents().get(1).studentCourses.get(0).getCourseCode());
+//        assertEquals("HIS1",registrationClass.getStudents().get(1).studentCourses.get(1).getCourseCode());
+//    }
 }
