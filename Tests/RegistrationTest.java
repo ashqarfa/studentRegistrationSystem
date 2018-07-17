@@ -4,6 +4,8 @@ import org.junit.Test;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class RegistrationTest {
 
@@ -54,10 +56,30 @@ public class RegistrationTest {
     }
 
     @Test
-    public void chceckRegisterStudentToCourse() {
+    public void chceckRegisterStudentToCourse() throws Exception {
         classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1),"MAT1");
         classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1),"HIS1");
-        assertEquals("MAT1",classUnderTest.getStudents().get(1).studentCourses.get(0).courseCode);
-        assertEquals("HIS1",classUnderTest.getStudents().get(1).studentCourses.get(1).courseCode);
+        assertEquals("MAT1",classUnderTest.getStudents().get(1).studentCourses.get(0).getCourseCode());
+        assertEquals("HIS1",classUnderTest.getStudents().get(1).studentCourses.get(1).getCourseCode());
+    }
+
+    @Test
+    public void addNewCourseTest() {
+        boolean check = true;
+        assertEquals("History", Course.getCoursesOffered().get("HIS1"));
+        assertEquals("Math", Course.getCoursesOffered().get("MAT1"));
+        try {
+            classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1), "HIS1");
+        }
+        catch (Exception e) {
+            check = false;
+        }
+        assertTrue(check);
+    }
+
+    @Test
+    public void removeCourseTest() {
+        Course.removeCourse("HIS1");
+        assertNull(Course.getCoursesOffered().get("HIS1"));
     }
 }

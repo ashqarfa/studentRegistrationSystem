@@ -5,7 +5,7 @@ class Course {
 
 
     private static Map<String, String> coursesOffered = new HashMap<>();
-    String courseCode;
+    private String courseCode;
     private String courseName;
     private CourseStatus courseStatus;
 
@@ -27,6 +27,10 @@ class Course {
 
     static Map<String, String> getCoursesOffered(){
         return coursesOffered;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
     }
 
     enum CourseStatus {failed, passed, inProgress}

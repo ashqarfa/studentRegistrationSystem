@@ -1,3 +1,4 @@
+import javax.activity.InvalidActivityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,10 @@ class Registration {
         return new Account(studentEmail, password, student);
     }
 
-    final void registerStudentInCourse(Student student, String courseCode) {
-        student.studentCourses.add(new Course(courseCode));
+    void registerStudentInCourse(Student student, String courseCode) throws InvalidActivityException{
+        if (Course.getCoursesOffered().containsKey(courseCode))
+            student.studentCourses.add(new Course(courseCode));
+        else
+            throw new InvalidActivityException("Course does not exist");
     }
 }
