@@ -51,6 +51,23 @@ public class RegistrationTest {
         IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, registrationClass.getStudents().get(n).getStudentID()));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testArgumentsWithNumbers() {
+        registrationClass.registerStudent("Fara!h", "Ashqar", "321");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testArgumentsWithEmptyInput() {
+        registrationClass.registerStudent("Farah", "", "321");
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testArgumentsWithNullInput() {
+        registrationClass.registerStudent("Farah", null, "654");
+    }
+
+
+
     @Test
     public void testAddingCourses() throws InvalidActivityException {
 

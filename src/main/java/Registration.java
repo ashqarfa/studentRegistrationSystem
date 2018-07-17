@@ -19,8 +19,15 @@ class Registration {
         return numberOfStudents;
     }
 
-    void registerStudent(String firstName, String lastName, String password) {
+    void registerStudent(String firstName, String lastName, String password) throws IllegalArgumentException {
 
+        if (firstName.isEmpty() || lastName.isEmpty() || password.isEmpty()) {
+            throw new IllegalArgumentException("cannot have empty argument");
+        }
+
+        if (firstName.matches(".*[^A-Za-z].*") || lastName.matches(".*[^A-Za-z].*")) {
+            throw new IllegalArgumentException("names can only contain letters");
+        }
         Student newStudent = new Student(firstName, lastName, numberOfStudents + 1);
         Account newAccount = Account.createAccount(newStudent, password, students);
         newStudent.setAccount(newAccount);
@@ -29,5 +36,4 @@ class Registration {
         students.add(newStudent);
         numberOfStudents++;
     }
-
 }
