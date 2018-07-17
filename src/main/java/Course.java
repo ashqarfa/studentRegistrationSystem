@@ -13,7 +13,10 @@ class Course {
         this.courseName = coursesOffered.get(courseCode);
     }
 
-    static void addNewCourse(String courseCode, String courseName) {
+    static void addNewCourse(String courseCode, String courseName) throws IllegalArgumentException{
+        if (courseCode.matches(".*[^A-Z0-9].*")) {
+            throw new IllegalArgumentException("Invalid arguments");
+        }
         coursesOffered.put(courseCode, courseName);
     }
 

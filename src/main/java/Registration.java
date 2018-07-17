@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class Registration {
@@ -8,11 +9,11 @@ class Registration {
     private int numberOfStudents = 0;
 
     List<Student> getStudents() {
-        return students;
+        return Collections.unmodifiableList(students);
     }
 
     List<Account> getStudentAccounts() {
-        return studentAccounts;
+        return Collections.unmodifiableList(studentAccounts);
     }
 
     int getNumberOfStudents() {

@@ -105,4 +105,11 @@ public class RegistrationTest {
         expectedCourses.add(new Course("HIS1"));
         assertThat(studentCourses, containsInAnyOrder(expectedCourses.toArray()));
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testArgumentsInCourse() {
+        Course.addNewCourse("HIs1", "History");
+    }
+
+
 }
