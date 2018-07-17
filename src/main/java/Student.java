@@ -3,11 +3,11 @@ import java.util.List;
 
 class Student {
 
-    String firstName;
-    String lastName;
-    int studentID;
+    private String firstName;
+    private String lastName;
+    private int studentID;
     private Account account;
-    List<Course> studentCourses = new ArrayList<>();
+    private List<Course> studentCourses = new ArrayList<>();
 
     Student(String firstName, String lastName, int studentID) {
         this.firstName = firstName;
@@ -19,8 +19,23 @@ class Student {
         return students.stream().filter(st -> (st.firstName.equals(student.firstName)) && (st.lastName.equals(student.lastName))).count();
     }
 
+    String getFirstName() {
+        return firstName;
+    }
+
+    String getLastName() {
+        return lastName;
+    }
+
+    int getStudentID() {
+        return studentID;
+    }
+
+    List<Course> getStudentCourses() {
+        return studentCourses;
+    }
+
     void setAccount(Account account) {
         this.account = account;
     }
-
 }

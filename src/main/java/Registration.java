@@ -6,7 +6,6 @@ class Registration {
 
     private List<Student> students = new ArrayList<>();
     private List<Account> studentAccounts = new ArrayList<>();
-
     private int numberOfStudents = 0;
 
     List<Student> getStudents() {
@@ -24,7 +23,7 @@ class Registration {
     void registerStudent(String firstName, String lastName, String password) {
 
         Student newStudent = new Student(firstName, lastName, numberOfStudents + 1);
-        Account newAccount = createAccount(newStudent, password);
+        Account newAccount = AccountCreator.createAccount(newStudent, password, students);
         newStudent.setAccount(newAccount);
 
         studentAccounts.add(newAccount);
@@ -32,14 +31,10 @@ class Registration {
         numberOfStudents++;
     }
 
-    private Account createAccount(Student student, String password) {
-        String studentEmail = AccountCreator.createUniqueEmailAddress(student, students);
-        return new Account(studentEmail, password, student);
-    }
 
-    void registerStudentInCourse(Student student, String courseCode) throws InvalidActivityException{
+    void registerStudentInCourse(Student student, String courseCode) throws InvalidActivityException {
         if (Course.getCoursesOffered().containsKey(courseCode))
-            student.studentCourses.add(new Course(courseCode));
+            student.getStudentCourses().add(new Course(courseCode));
         else
             throw new InvalidActivityException("Course does not exist");
     }
