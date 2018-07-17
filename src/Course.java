@@ -5,7 +5,7 @@ class Course {
 
 
     private static Map<String, String> coursesOffered = new HashMap<>();
-    private String courseCode;
+    String courseCode;
     private String courseName;
     private CourseStatus courseStatus;
 

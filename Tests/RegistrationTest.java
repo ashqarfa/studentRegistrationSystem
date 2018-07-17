@@ -20,6 +20,8 @@ public class RegistrationTest {
         classUnderTest.registerStudent("Farah", "Hello", "tu");
         classUnderTest.registerStudent("Ed", "Sheeran", "vwx");
         classUnderTest.registerStudent("William", "Ashqar", "yz");
+        Course.addNewCourse("HIS1", "History");
+        Course.addNewCourse("MAT1", "Math");
     }
 
     @Test
@@ -49,5 +51,13 @@ public class RegistrationTest {
     @Test
     public void checkRightStudentIDs() {
         IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, classUnderTest.getStudents().get(n).studentID));
+    }
+
+    @Test
+    public void chceckRegisterStudentToCourse() {
+        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1),"MAT1");
+        classUnderTest.registerStudentInCourse(classUnderTest.getStudents().get(1),"HIS1");
+        assertEquals("MAT1",classUnderTest.getStudents().get(1).studentCourses.get(0).courseCode);
+        assertEquals("HIS1",classUnderTest.getStudents().get(1).studentCourses.get(1).courseCode);
     }
 }

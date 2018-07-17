@@ -17,6 +17,7 @@ public class CourseTest {
     public void addNewCourseTest() {
         assertEquals("History", Course.getCoursesOffered().get("HIS1"));
         assertEquals("Math", Course.getCoursesOffered().get("MAT1"));
+      //  assertEquals("Math", Course.getCoursesOffered().clear());
     }
 
     @Test

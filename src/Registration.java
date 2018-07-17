@@ -36,7 +36,7 @@ class Registration {
         return new Account(studentEmail, password, student);
     }
 
-    void registerStudentInCourse(Student student, String courseCode) {
+    final void registerStudentInCourse(Student student, String courseCode) {
         student.studentCourses.add(new Course(courseCode));
     }
 }
