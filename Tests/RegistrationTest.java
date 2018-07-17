@@ -50,6 +50,4 @@ public class RegistrationTest {
     public void checkRightStudentIDs() {
         IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, classUnderTest.getStudents().get(n).studentID));
     }
-
-
 }
