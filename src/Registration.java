@@ -1,3 +1,4 @@
+import javax.activity.InvalidActivityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,6 +6,7 @@ class Registration {
 
     private List<Student> students = new ArrayList<>();
     private List<Account> studentAccounts = new ArrayList<>();
+
     private int numberOfStudents = 0;
 
     List<Student> getStudents() {
@@ -35,7 +37,10 @@ class Registration {
         return new Account(studentEmail, password, student);
     }
 
-    void registerStudentInCourse(Student student, String courseCode) {
-        student.studentCourses.add(new Course(courseCode));
+    void registerStudentInCourse(Student student, String courseCode) throws InvalidActivityException{
+        if (Course.getCoursesOffered().containsKey(courseCode))
+            student.studentCourses.add(new Course(courseCode));
+        else
+            throw new InvalidActivityException("Course does not exist");
     }
 }
