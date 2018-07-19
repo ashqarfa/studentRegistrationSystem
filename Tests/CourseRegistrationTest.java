@@ -10,11 +10,11 @@ import static org.junit.Assert.assertThat;
 
 public class CourseRegistrationTest {
 
-    private MockRegistration mockRegistrationClass;
+    private MockTestingData mockTestingDataClass;
 
     @Before
     public void setUp() {
-        mockRegistrationClass = new MockRegistration();
+        mockTestingDataClass = new MockTestingData();
     }
 
 
@@ -22,7 +22,7 @@ public class CourseRegistrationTest {
     public void testAddingCourses() throws InvalidActivityException {
 
         Course.addNewCourse("MAT1", "Math");
-        Student student = mockRegistrationClass.getStudents().get(0);
+        Student student = mockTestingDataClass.getStudents().get(0);
         student.registerStudentInCourse("MAT1");
     }
 
@@ -31,7 +31,7 @@ public class CourseRegistrationTest {
 
         Course.addNewCourse("HIS1", "History");
         Course.removeCourse("HIS1");
-        Student student = mockRegistrationClass.getStudents().get(0);
+        Student student = mockTestingDataClass.getStudents().get(0);
         student.registerStudentInCourse("HIS1");
     }
 
@@ -41,7 +41,7 @@ public class CourseRegistrationTest {
         Course.addNewCourse("HIS1", "History");
         Course.addNewCourse("MAT1", "Math");
 
-        Student student = mockRegistrationClass.getStudents().get(0);
+        Student student = mockTestingDataClass.getStudents().get(0);
         student.registerStudentInCourse("MAT1");
         student.registerStudentInCourse("HIS1");
         List<Course> studentCourses = student.getStudentCourses();

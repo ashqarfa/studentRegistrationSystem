@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Registration implements RegistrationInterface{
+class Registration implements RegistrationInterface {
 
     private List<Student> students = new ArrayList<>();
     private List<AccountCreator> studentAccounts = new ArrayList<>();
