@@ -2,17 +2,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Registration {
+class Registration implements RegistrationInterface{
 
     private List<Student> students = new ArrayList<>();
-    private List<Account> studentAccounts = new ArrayList<>();
+    private List<AccountCreator> studentAccounts = new ArrayList<>();
     private int numberOfStudents = 0;
 
     List<Student> getStudents() {
         return Collections.unmodifiableList(students);
     }
 
-    List<Account> getStudentAccounts() {
+    List<AccountCreator> getStudentAccounts() {
         return Collections.unmodifiableList(studentAccounts);
     }
 
@@ -20,7 +20,8 @@ class Registration {
         return numberOfStudents;
     }
 
-    void registerStudent(String firstName, String lastName, String password) throws IllegalArgumentException {
+    @Override
+    public boolean registerStudent(String firstName, String lastName, String password) throws IllegalArgumentException {
 
         if (firstName.isEmpty() || lastName.isEmpty() || password.isEmpty()) {
             throw new IllegalArgumentException("cannot have empty argument");
@@ -30,11 +31,12 @@ class Registration {
             throw new IllegalArgumentException("names can only contain letters");
         }
         Student newStudent = new Student(firstName, lastName, numberOfStudents + 1);
-        Account newAccount = Account.createAccount(newStudent, password, students);
+        AccountCreator newAccount = AccountCreator.createAccount(newStudent, password, students);
         newStudent.setAccount(newAccount);
 
         studentAccounts.add(newAccount);
         students.add(newStudent);
         numberOfStudents++;
+        return true;
     }
 }

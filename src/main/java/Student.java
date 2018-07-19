@@ -7,7 +7,7 @@ class Student {
     private String firstName;
     private String lastName;
     private int studentID;
-    private Account account;
+    private AccountCreator account;
     private List<Course> studentCourses = new ArrayList<>();
 
     Student(String firstName, String lastName, int studentID) {
@@ -42,7 +42,7 @@ class Student {
         return studentCourses;
     }
 
-    void setAccount(Account account) {
+    void setAccount(AccountCreator account) {
         this.account = account;
     }
 }

@@ -1,5 +1,9 @@
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import javax.activity.InvalidActivityException;
 import java.util.ArrayList;
@@ -9,20 +13,32 @@ import java.util.stream.IntStream;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 
 public class RegistrationTest {
-    private Registration registrationClass;
+
+    Registration registrationClass;
 
     @Before
     public void setUp() {
         registrationClass = new Registration();
+       // initMocks(this);
+        //registrationClass = mock(Registration.class);
+       // when(registrationClass.registerStudent("Farah", "Ashqar", "abcd")).thenReturn(true);
+       // when(registrationClass.getNumberOfStudents()).thenReturn(1);
     }
 
     @Test
     public void testGetNumberOfStudents() {
         //Arrange
         registrationClass.registerStudent("Farah", "Ashqar", "abcd");
+
+        //when(registrationClass.registerStudent("Farah", "Ashqar", "abcd")).thenReturn(1);
+
         //Assert
         assertEquals(1, registrationClass.getNumberOfStudents());
         assertEquals(1, registrationClass.getStudentAccounts().size());
@@ -66,8 +82,6 @@ public class RegistrationTest {
         registrationClass.registerStudent("Farah", null, "654");
     }
 
-
-
     @Test
     public void testAddingCourses() throws InvalidActivityException {
 
@@ -86,7 +100,6 @@ public class RegistrationTest {
         Student student = registrationClass.getStudents().get(0);
         student.registerStudentInCourse("HIS1");
     }
-
 
     @Test
     public void checkRegisterStudentToCourse() throws InvalidActivityException {

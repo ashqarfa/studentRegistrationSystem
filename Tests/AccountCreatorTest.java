@@ -28,65 +28,53 @@ public class AccountCreatorTest {
 
     @Test
     public void createEmailAddressWithEmptyListOfStudents() {
-
         String expectedEmail = "farah.ashqar@mail.university.com";
-
         List<Student> studentList = new ArrayList<>();
 
-        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
     }
 
     @Test
     public void createEmailAddressWithListOfStudentsNoDuplicates() {
-
         String expectedEmail = "farah.ashqar@mail.university.com";
         List<Student> studentList = new ArrayList<>();
-
         studentList.add(jozefBernat);
         studentList.add(jozefBernat2);
         studentList.add(willSmith);
 
-        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
     }
 
     @Test
     public void createEmailAddressWithOneDuplicate() {
-
-
         String expectedEmail = "farah.ashqar2@mail.university.com";
         List<Student> studentList = new ArrayList<>();
-
         studentList.add(jozefBernat);
         studentList.add(jozefBernat2);
         studentList.add(willSmith);
         studentList.add(farahAshqar2);
 
-        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
-
     }
 
     @Test
     public void createEmailAddressWithMultipleDuplicates() {
-
-
         String expectedEmail = "farah.ashqar3@mail.university.com";
         List<Student> studentList = new ArrayList<>();
-
         studentList.add(jozefBernat);
         studentList.add(jozefBernat2);
         studentList.add(willSmith);
         studentList.add(farahAshqar2);
         studentList.add(farahAshqar3);
 
-        String actualEmail = Account.createUniqueEmailAddress(farahAshqar, studentList);
+        String actualEmail = AccountCreator.createUniqueEmailAddress(farahAshqar, studentList);
 
         assertEquals(expectedEmail, actualEmail);
-
     }
 }
