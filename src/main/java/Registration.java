@@ -8,20 +8,20 @@ class Registration implements RegistrationInterface{
     private List<AccountCreator> studentAccounts = new ArrayList<>();
     private int numberOfStudents = 0;
 
-    List<Student> getStudents() {
-        return Collections.unmodifiableList(students);
-    }
-
     List<AccountCreator> getStudentAccounts() {
         return Collections.unmodifiableList(studentAccounts);
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        return Collections.unmodifiableList(students);
     }
 
     int getNumberOfStudents() {
         return numberOfStudents;
     }
 
-    @Override
-    public boolean registerStudent(String firstName, String lastName, String password) throws IllegalArgumentException {
+    boolean registerStudent(String firstName, String lastName, String password) throws IllegalArgumentException {
 
         if (firstName.isEmpty() || lastName.isEmpty() || password.isEmpty()) {
             throw new IllegalArgumentException("cannot have empty argument");

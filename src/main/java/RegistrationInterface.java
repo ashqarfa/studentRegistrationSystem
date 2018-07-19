@@ -1,3 +1,6 @@
+import java.util.List;
+
 public interface RegistrationInterface {
-    boolean registerStudent(String firstName, String lastName, String password);
+
+    List<Student> getStudents();
 }
