@@ -55,6 +55,4 @@ public class CourseRegistrationTest {
     public void testArgumentsInCourse() {
         Course.addNewCourse("HIs1", "History");
     }
-
-
 }
