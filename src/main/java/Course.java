@@ -1,31 +1,29 @@
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 class Course {
 
-    private static Map<String, String> coursesOffered = new HashMap<>();
     private String courseCode;
     private String courseName;
+    private static CourseRepository courseRepository;
 
-    Course(String courseCode) {
+    Course(String courseCode, String courseName) {
         this.courseCode = courseCode;
-        this.courseName = coursesOffered.get(courseCode);
+        this.courseName = courseName;
     }
 
     static void addNewCourse(String courseCode, String courseName) throws IllegalArgumentException{
         if (courseCode.matches(".*[^A-Z0-9].*")) {
             throw new IllegalArgumentException("Invalid arguments");
         }
-        coursesOffered.put(courseCode, courseName);
+        courseRepository.addCourse(courseCode, courseName);
     }
 
     static void removeCourse(String courseCode) {
-        coursesOffered.remove(courseCode);
+        courseRepository.removeCourse(courseCode);
     }
 
     static boolean isOffered(String courseCode) {
-        return coursesOffered.containsKey(courseCode);
+        return (courseRepository.getCourseNameIfFound(courseCode) != null);
     }
 
     @Override

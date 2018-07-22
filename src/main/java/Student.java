@@ -20,10 +20,10 @@ class Student {
         return students.stream().filter(st -> (st.firstName.equals(student.firstName)) && (st.lastName.equals(student.lastName))).count();
     }
 
-    void registerStudentInCourse(String courseCode) throws InvalidActivityException {
+    void registerStudentInCourse(String courseCode, String courseName) throws InvalidActivityException {
         if (!Course.isOffered(courseCode))
             throw new InvalidActivityException("Course does not exist");
-        this.studentCourses.add(new Course(courseCode));
+        this.studentCourses.add(new Course(courseCode, courseName));
     }
 
     String getFirstName() {

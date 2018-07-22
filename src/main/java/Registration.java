@@ -1,21 +1,7 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+class Registration {
 
-class Registration implements RegistrationInterface {
-
-    private List<Student> students = new ArrayList<>();
-    private List<AccountCreator> studentAccounts = new ArrayList<>();
     private int numberOfStudents = 0;
-
-    List<AccountCreator> getStudentAccounts() {
-        return Collections.unmodifiableList(studentAccounts);
-    }
-
-    @Override
-    public List<Student> getStudents() {
-        return Collections.unmodifiableList(students);
-    }
+    private static StudentRepository studentRepository;
 
     int getNumberOfStudents() {
         return numberOfStudents;
@@ -30,12 +16,11 @@ class Registration implements RegistrationInterface {
         if (firstName.matches(".*[^A-Za-z].*") || lastName.matches(".*[^A-Za-z].*")) {
             throw new IllegalArgumentException("names can only contain letters");
         }
-        Student newStudent = new Student(firstName, lastName, numberOfStudents + 1);
-        AccountCreator newAccount = AccountCreator.createAccount(newStudent, password, students);
-        newStudent.setAccount(newAccount);
 
-        studentAccounts.add(newAccount);
-        students.add(newStudent);
+        Student newStudent = new Student(firstName, lastName, numberOfStudents + 1);
+        AccountCreator newAccount = AccountCreator.createAccount(newStudent, password, studentRepository.getAllStudents());
+        newStudent.setAccount(newAccount);
+        studentRepository.addStudent(newStudent);
         numberOfStudents++;
         return true;
     }
