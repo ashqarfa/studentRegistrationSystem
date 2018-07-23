@@ -1,3 +1,6 @@
+package testcases;
+
+import fakerepositories.FakeCourseRepository;
 import org.junit.Test;
 import usecases.RemoveCourseUseCase;
 

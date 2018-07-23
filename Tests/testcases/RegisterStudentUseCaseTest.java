@@ -1,3 +1,6 @@
+package testcases;
+
+import fakerepositories.FakeStudentRepository;
 import org.junit.Before;
 import org.junit.Test;
 import usecases.RegisterStudentUseCase;

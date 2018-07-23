@@ -1,3 +1,5 @@
+package fakerepositories;
+
 import domain.Student;
 import repositories.StudentRepository;
 
@@ -23,7 +25,7 @@ public class FakeStudentRepository implements StudentRepository {
         return studentList.stream().filter(student -> student.getStudentID() == ID).findAny().orElse(null);
     }
 
-    void clear() {
+    public void clear() {
         studentList.clear();
     }
 }

@@ -1,5 +1,9 @@
+package testcases;
+
 import domain.Course;
 import domain.Student;
+import fakerepositories.FakeCourseRepository;
+import fakerepositories.FakeStudentRepository;
 import org.junit.Test;
 import usecases.RegisterStudentInCourseUseCase;
 

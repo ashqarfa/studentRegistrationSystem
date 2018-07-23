@@ -1,3 +1,5 @@
+package fakerepositories;
+
 import domain.Course;
 import repositories.CourseRepository;
 
