@@ -10,7 +10,7 @@
 //
 //public class CourseRegistrationTest {
 //
-//    private MockTestingData mockTestingDataClass;
+//    private FakeStudentRepository fakeStudentRepository = new FakeStudentRepository();
 //
 //    @Before
 //    public void setUp() {
