@@ -24,7 +24,7 @@ class Course {
     }
 
     static void removeCourse(String courseCode) {
-        courseRepository.removeCourse(courseCode);
+        courseRepository.deleteCourse(courseCode);
     }
 
     static boolean isOffered(String courseCode) {

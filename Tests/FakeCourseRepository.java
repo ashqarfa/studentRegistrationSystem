@@ -11,7 +11,7 @@ public class FakeCourseRepository implements CourseRepository {
     }
 
     @Override
-    public void removeCourse(String courseCode) {
+    public void deleteCourse(String courseCode) {
         coursesOffered.remove(courseCode);
     }
 

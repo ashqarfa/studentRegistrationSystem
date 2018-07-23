@@ -26,8 +26,8 @@ public class CourseRegistrationTest {
 
     @Test(expected = InvalidActivityException.class)
     public void testRemovingCourses() throws InvalidActivityException {
-        fakeCourseRepository.addCourse("GER1", "German");
-        fakeCourseRepository.removeCourse("GER1");
+        Course.addNewCourse("GER1", "German");
+        Course.removeCourse("GER1");
         student.registerStudentInCourse("GER1", "German");
     }
 
