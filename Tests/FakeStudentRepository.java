@@ -14,4 +14,8 @@ public class FakeStudentRepository implements StudentRepository {
     public List<Student> getAllStudents() {
         return studentList;
     }
+
+    void clear() {
+        studentList.clear();
+    }
 }

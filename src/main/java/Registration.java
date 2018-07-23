@@ -1,7 +1,12 @@
 class Registration {
 
     private int numberOfStudents = 0;
-    private static StudentRepository studentRepository;
+
+    private StudentRepository studentRepository = null;
+
+    public void setStudentRepository(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     int getNumberOfStudents() {
         return numberOfStudents;

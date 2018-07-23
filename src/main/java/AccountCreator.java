@@ -12,6 +12,14 @@ class AccountCreator {
         this.student = student;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     static AccountCreator createAccount(Student student, String password, List<Student> students) {
         String studentEmail = createUniqueEmailAddress(student, students);
         return new AccountCreator(studentEmail, password, student);
@@ -29,13 +37,5 @@ class AccountCreator {
 
     private static String complexEmail(Student student, long numDuplicates) {
         return student.getFirstName().toLowerCase() + "." + student.getLastName().toLowerCase() + (numDuplicates + 1) + "@mail.university.com";
-    }
-
-    String getEmail() {
-        return email;
-    }
-
-    String getPassword() {
-        return password;
     }
 }

@@ -7,13 +7,17 @@ class Student {
     private String firstName;
     private String lastName;
     private int studentID;
-    private AccountCreator account;
+    private AccountCreator account = null;
     private List<Course> studentCourses = new ArrayList<>();
 
     Student(String firstName, String lastName, int studentID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentID = studentID;
+    }
+
+    public AccountCreator getAccount() {
+        return account;
     }
 
     static long numberOfNameDuplicates(Student student, List<Student> students) {
@@ -24,6 +28,10 @@ class Student {
         if (!Course.isOffered(courseCode))
             throw new InvalidActivityException("Course does not exist");
         this.studentCourses.add(new Course(courseCode, courseName));
+    }
+
+    void setAccount(AccountCreator account) {
+        this.account = account;
     }
 
     String getFirstName() {
@@ -42,7 +50,5 @@ class Student {
         return studentCourses;
     }
 
-    void setAccount(AccountCreator account) {
-        this.account = account;
-    }
+
 }

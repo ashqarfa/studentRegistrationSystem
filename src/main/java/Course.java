@@ -4,7 +4,7 @@ class Course {
 
     private String courseCode;
     private String courseName;
-    private static CourseRepository courseRepository;
+    private static CourseRepository courseRepository = null;
 
     Course(String courseCode, String courseName) {
         this.courseCode = courseCode;
