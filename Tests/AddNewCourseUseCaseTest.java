@@ -14,4 +14,9 @@ public class AddNewCourseUseCaseTest {
         newCourseUseCase.addNewCourse("MAT1", "Math");
         assertTrue(fakeCourseRepository.isOffered("MAT1"));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCourseCode() {
+        newCourseUseCase.addNewCourse("maT1", "Math");
+    }
 }
