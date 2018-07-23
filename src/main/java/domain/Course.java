@@ -7,7 +7,7 @@ public class Course {
     private final String courseCode;
     private final String courseName;
 
-    private Course(String courseCode, String courseName) {
+    public Course(String courseCode, String courseName) {
         this.courseCode = courseCode;
         this.courseName = courseName;
     }

@@ -9,7 +9,7 @@ public class RemoveCourseUseCase {
         this.courseRepository = courseRepository;
     }
 
-    void removeCourse(String courseCode) {
+    public void removeCourse(String courseCode) {
         courseRepository.deleteCourse(courseCode);
     }
 }

@@ -11,7 +11,7 @@ public class RegisterStudentUseCase {
         this.studentRepository = studentRepository;
     }
 
-    void registerStudent(String firstName, String lastName, String password) {
+    public void registerStudent(String firstName, String lastName, String password) {
 
         Student newStudent = Student.createStudentIfValid(firstName, lastName, password, studentRepository.getAllStudents());
         studentRepository.addStudent(newStudent);

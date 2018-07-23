@@ -11,7 +11,7 @@ public class Student {
     private AccountCreator account = null;
     private List<Course> studentCourses = new ArrayList<>();
 
-    private Student(String firstName, String lastName, int studentID) {
+    public Student(String firstName, String lastName, int studentID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentID = studentID;
@@ -52,11 +52,11 @@ public class Student {
         this.account = account;
     }
 
-    String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -67,6 +67,5 @@ public class Student {
     public List<Course> getStudentCourses() {
         return studentCourses;
     }
-
 
 }

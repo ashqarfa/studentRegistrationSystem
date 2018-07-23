@@ -10,7 +10,7 @@ public class AddNewCourseUseCase {
         this.courseRepository = courseRepository;
     }
 
-    void addNewCourse(String courseCode, String courseName) throws IllegalArgumentException {
+    public void addNewCourse(String courseCode, String courseName) throws IllegalArgumentException {
         Course course = Course.create(courseCode, courseName);
         courseRepository.addCourse(course);
     }
