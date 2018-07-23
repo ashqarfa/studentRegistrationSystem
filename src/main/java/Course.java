@@ -23,6 +23,7 @@ class Course {
     }
 
     static boolean isOffered(String courseCode) {
+
         return (courseRepository.getCourseNameIfFound(courseCode) != null);
     }
 
