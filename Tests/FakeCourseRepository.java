@@ -6,7 +6,7 @@ public class FakeCourseRepository implements CourseRepository {
     private static Map<String, String> coursesOffered = new HashMap<>();
 
     @Override
-    public void addCourse(String courseName, String courseCode) {
+    public void addCourse(String courseCode, String courseName) {
         coursesOffered.put(courseCode, courseName);
     }
 

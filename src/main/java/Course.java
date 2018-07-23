@@ -6,6 +6,11 @@ class Course {
     private String courseName;
     private static CourseRepository courseRepository = null;
 
+
+    static void setCourseRepository(CourseRepository courseRepository) {
+        Course.courseRepository = courseRepository;
+    }
+
     Course(String courseCode, String courseName) {
         this.courseCode = courseCode;
         this.courseName = courseName;
