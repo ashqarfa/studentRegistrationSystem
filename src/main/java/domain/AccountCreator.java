@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.List;
 
 class AccountCreator {
@@ -25,7 +27,7 @@ class AccountCreator {
         return new AccountCreator(studentEmail, password, student);
     }
 
-    static String createUniqueEmailAddress(Student student, List<Student> studentList) {
+    private static String createUniqueEmailAddress(Student student, List<Student> studentList) {
         long numDuplicates = Student.numberOfNameDuplicates(student, studentList);
         if (numDuplicates == 0) return simpleEmail(student);
         else return complexEmail(student, numDuplicates);

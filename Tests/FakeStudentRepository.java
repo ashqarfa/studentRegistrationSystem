@@ -1,3 +1,6 @@
+import domain.Student;
+import repositories.StudentRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,11 @@ public class FakeStudentRepository implements StudentRepository {
     @Override
     public List<Student> getAllStudents() {
         return studentList;
+    }
+
+    @Override
+    public Student getStudentByID(int ID) {
+        return studentList.stream().filter(student -> student.getStudentID() == ID).findAny().orElse(null);
     }
 
     void clear() {

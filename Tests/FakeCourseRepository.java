@@ -1,23 +1,28 @@
-import java.util.HashMap;
-import java.util.Map;
+import domain.Course;
+import repositories.CourseRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FakeCourseRepository implements CourseRepository {
 
-    private static Map<String, String> coursesOffered = new HashMap<>();
+    private static List<Course> coursesOffered = new ArrayList<>();
 
-    @Override
-    public void addCourse(String courseCode, String courseName) {
-        coursesOffered.put(courseCode, courseName);
-    }
 
     @Override
     public void deleteCourse(String courseCode) {
-        coursesOffered.remove(courseCode);
+        coursesOffered = coursesOffered.stream().filter(course -> !(course.getCourseCode().equals(courseCode))).collect(Collectors.toList());
     }
 
     @Override
-    public String getCourseNameIfFound(String courseCode) {
-        return coursesOffered.get(courseCode);
+    public boolean isOffered(String courseCode) {
+        return coursesOffered.stream().anyMatch(course -> course.getCourseCode().equals(courseCode));
+    }
+
+    @Override
+    public void addCourse(Course course) {
+        coursesOffered.add(course);
     }
 
     public void clear() {
