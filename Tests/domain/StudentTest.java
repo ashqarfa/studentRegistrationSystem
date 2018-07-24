@@ -14,10 +14,10 @@ public class StudentTest {
 
     @Before
     public void setUp() {
-        studentList.add(new Student(StudentName.create("Farah"), StudentName.create("Ashqar"), 1, "farah.ashqar@mail.university.com", "abcd"));
-        studentList.add(new Student(StudentName.create("Jozef"), StudentName.create("Bernat"), 2, "jozef.bernat@mail.university.com", "abcd"));
-        studentList.add(new Student(StudentName.create("Jozef"), StudentName.create("Bernat"), 3, "jozef.bernat2@mail.university.com", "abcd"));
-        studentList.add(new Student(StudentName.create("Test"), StudentName.create("hello"), 4, "test.hello@mail.university.com", "abcd"));
+        studentList.add(new Student(StudentName.create("Farah", "Ashqar"), 1, "farah.ashqar@mail.university.com", "abcd"));
+        studentList.add(new Student(StudentName.create("Jozef", "Bernat"), 2, "jozef.bernat@mail.university.com", "abcd"));
+        studentList.add(new Student(StudentName.create("Jozef", "Bernat"), 3, "jozef.bernat2@mail.university.com", "abcd"));
+        studentList.add(new Student(StudentName.create("Test", "Hello"), 4, "test.hello@mail.university.com", "abcd"));
     }
 
     @Test
@@ -30,19 +30,19 @@ public class StudentTest {
     @Test(expected = IllegalArgumentException.class)
     public void emptyArgumentTest() {
         List<Student> studentList = new ArrayList<>();
-        Student.createStudentIfValid(StudentName.create(""), StudentName.create("Ashqar"), "sd", studentList);
+        Student.create(StudentName.create(""), StudentName.create("Ashqar"), "sd", studentList);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void numbersArgumentTest() {
         List<Student> studentList = new ArrayList<>();
-        Student.createStudentIfValid(StudentName.create("Farah"), StudentName.create("Ash2ar"), "asc", studentList);
+        Student.create(StudentName.create("Farah"), StudentName.create("Ash2ar"), "asc", studentList);
     }
 
     @Test
     public void createEmailAddressWithListOfStudentsNoDuplicates() {
         String expectedEmail = "fero.cerveny@mail.university.com";
-        Student student = Student.createStudentIfValid(StudentName.create("Fero"), StudentName.create("Cerveny"), "fdf", studentList);
+        Student student = Student.create(StudentName.create("Fero"), StudentName.create("Cerveny"), "fdf", studentList);
         String actualEmail = student.getEmail();
         assertEquals(expectedEmail, actualEmail);
     }
@@ -50,7 +50,7 @@ public class StudentTest {
     @Test
     public void createEmailAddressWithListOfStudentsOneDuplicate() {
         String expectedEmail = "farah.ashqar2@mail.university.com";
-        Student student = Student.createStudentIfValid(StudentName.create("Farah"), StudentName.create("Ashqar"), "fdf", studentList);
+        Student student = Student.create(StudentName.create("Farah"), StudentName.create("Ashqar"), "fdf", studentList);
         String actualEmail = student.getEmail();
         assertEquals(expectedEmail, actualEmail);
     }
@@ -58,7 +58,7 @@ public class StudentTest {
     @Test
     public void createEmailAddressWithListOfStudentsTwoDuplicates() {
         String expectedEmail = "jozef.bernat3@mail.university.com";
-        Student student = Student.createStudentIfValid(StudentName.create("Jozef"), StudentName.create("Bernat"), "fdf", studentList);
+        Student student = Student.create(StudentName.create("Jozef"), StudentName.create("Bernat"), "fdf", studentList);
         String actualEmail = student.getEmail();
         assertEquals(expectedEmail, actualEmail);
     }

@@ -2,6 +2,7 @@ package usecases;
 
 import domain.Student;
 import domain.StudentName;
+import domain.StudentRegistrationService;
 import repositories.StudentRepository;
 
 class RegisterStudentUseCase {
@@ -12,10 +13,8 @@ class RegisterStudentUseCase {
         this.studentRepository = studentRepository;
     }
 
-    void registerStudent(StudentName firstName, StudentName lastName, String password) {
-
-        Student newStudent = Student.createStudentIfValid(firstName, lastName, password, studentRepository.getAllStudents());
+    void registerStudent(StudentName name, String password, StudentRegistrationService service) {
+        Student newStudent = Student.create(name, password, service);
         studentRepository.addStudent(newStudent);
-
     }
 }

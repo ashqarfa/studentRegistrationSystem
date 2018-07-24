@@ -28,7 +28,7 @@ public class RegisterStudentInCourseUseCaseTest {
         Course history = new Course(CourseCode.create("HIS1"), "History");
         fakeCourseRepository.addCourse(math);
         fakeCourseRepository.addCourse(history);
-        fakeStudentRepository.addStudent(new Student(StudentName.create("Farah"), StudentName.create("Ashqar"), 1, "farah.ashqar@mail.university.com", "gdf"));
+        fakeStudentRepository.addStudent(new Student(StudentName.create("Farah", "Ashqar"), 1, "farah.ashqar@mail.university.com", "gdf"));
         registerStudentInCourseUseCase.registerStudentInCourse(1, math);
         registerStudentInCourseUseCase.registerStudentInCourse(1, history);
 

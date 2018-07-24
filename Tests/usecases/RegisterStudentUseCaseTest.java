@@ -1,5 +1,6 @@
 package usecases;
 
+import domain.FakeStudentRegistrationService;
 import domain.StudentName;
 import fakerepositories.FakeStudentRepository;
 import org.junit.Before;
@@ -14,6 +15,7 @@ public class RegisterStudentUseCaseTest {
 
     private FakeStudentRepository fakeStudentRepository = new FakeStudentRepository();
     private RegisterStudentUseCase registerStudentUseCase = new RegisterStudentUseCase(fakeStudentRepository);
+    private FakeStudentRegistrationService fakeStudentRegistrationService = new FakeStudentRegistrationService(fakeStudentRepository);
 
 
     @Before
@@ -24,11 +26,11 @@ public class RegisterStudentUseCaseTest {
     @Test
     public void testAddingOneStudent() {
 
-        registerStudentUseCase.registerStudent(StudentName.create("Farah"), StudentName.create("Ashqar"), "abcd");
+        registerStudentUseCase.registerStudent(StudentName.create("Farah", "Ashqar"), "abcd", fakeStudentRegistrationService);
         assertEquals(1, fakeStudentRepository.getAllStudents().size());
         assertTrue(fakeStudentRepository.getAllStudents().stream().anyMatch(student -> (
-                student.getFirstName().getName().equals("Farah") &&
-                        student.getLastName().getName().equals("Ashqar") &&
+                student.getName().getFirstName().equals("Farah") &&
+                        student.getName().getLastName().equals("Ashqar") &&
                         student.getStudentID() == 1 &&
                         student.getPassword().equals("abcd") &&
                         student.getEmail().equals("farah.ashqar@mail.university.com")
@@ -37,25 +39,25 @@ public class RegisterStudentUseCaseTest {
 
     @Test
     public void testMultiRegistration() {
-        registerStudentUseCase.registerStudent(StudentName.create("Farah"), StudentName.create("Ashqar"), "abcd");
-        registerStudentUseCase.registerStudent(StudentName.create("Jozef"), StudentName.create("Bernat"), "efgh");
-        registerStudentUseCase.registerStudent(StudentName.create("Bob"), StudentName.create("Smith"), "ijkl");
-        registerStudentUseCase.registerStudent(StudentName.create("Issa"), StudentName.create("Ashqar"), "mno");
-        registerStudentUseCase.registerStudent(StudentName.create("James"), StudentName.create("Smith"), "pqrs");
-        registerStudentUseCase.registerStudent(StudentName.create("Farah"), StudentName.create("Hello"), "tu");
-        registerStudentUseCase.registerStudent(StudentName.create("Ed"), StudentName.create("Sheeran"), "vwx");
-        registerStudentUseCase.registerStudent(StudentName.create("William"), StudentName.create("Ashqar"), "yz");
+        registerStudentUseCase.registerStudent(StudentName.create("Farah", "Ashqar"), "abcd", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("Jozef", "Bernat"), "efgh", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("Bob", "Smith"), "ijkl", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("Issa", "Ashqar"), "mno", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("James", "Smith"), "pqrs", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("Farah", "Hello"), "tu", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("Ed", "Sheeran"), "vwx", fakeStudentRegistrationService);
+        registerStudentUseCase.registerStudent(StudentName.create("William", "Ashqar"), "yz", fakeStudentRegistrationService);
         assertEquals(8, fakeStudentRepository.getAllStudents().size());
         IntStream.range(0, 7).forEach(n -> assertEquals(n + 1, fakeStudentRepository.getAllStudents().get(n).getStudentID()));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testArgumentsWithNumbers() {
-        registerStudentUseCase.registerStudent(StudentName.create("Far4h"), StudentName.create("Ashqar"), "321");
+        registerStudentUseCase.registerStudent(StudentName.create("Far4h", "Ashqar"), "321", fakeStudentRegistrationService);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testArgumentsWithEmptyInput() {
-        registerStudentUseCase.registerStudent(StudentName.create("Farah"), StudentName.create(""), "321");
+        registerStudentUseCase.registerStudent(StudentName.create("Farah", ""), "321", fakeStudentRegistrationService);
     }
 }
