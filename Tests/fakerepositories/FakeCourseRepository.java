@@ -1,6 +1,7 @@
 package fakerepositories;
 
 import domain.Course;
+import domain.CourseCode;
 import repositories.CourseRepository;
 
 import java.util.ArrayList;
@@ -13,12 +14,12 @@ public class FakeCourseRepository implements CourseRepository {
 
 
     @Override
-    public void deleteCourse(String courseCode) {
+    public void deleteCourse(CourseCode courseCode) {
         coursesOffered = coursesOffered.stream().filter(course -> !(course.getCourseCode().equals(courseCode))).collect(Collectors.toList());
     }
 
     @Override
-    public boolean isOffered(String courseCode) {
+    public boolean isOffered(CourseCode courseCode) {
         return coursesOffered.stream().anyMatch(course -> course.getCourseCode().equals(courseCode));
     }
 

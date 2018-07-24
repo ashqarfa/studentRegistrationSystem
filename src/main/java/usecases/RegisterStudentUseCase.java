@@ -1,17 +1,18 @@
 package usecases;
 
 import domain.Student;
+import domain.StudentName;
 import repositories.StudentRepository;
 
-public class RegisterStudentUseCase {
+class RegisterStudentUseCase {
 
     private final StudentRepository studentRepository;
 
-    public RegisterStudentUseCase(StudentRepository studentRepository) {
+    RegisterStudentUseCase(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    public void registerStudent(String firstName, String lastName, String password) {
+    void registerStudent(StudentName firstName, StudentName lastName, String password) {
 
         Student newStudent = Student.createStudentIfValid(firstName, lastName, password, studentRepository.getAllStudents());
         studentRepository.addStudent(newStudent);

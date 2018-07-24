@@ -1,7 +1,9 @@
 package usecases;
 
 import domain.Course;
+import domain.CourseCode;
 import domain.Student;
+import domain.StudentName;
 import fakerepositories.FakeCourseRepository;
 import fakerepositories.FakeStudentRepository;
 import org.junit.Test;
@@ -22,19 +24,19 @@ public class RegisterStudentInCourseUseCaseTest {
     @Test
     public void testRegisteringStudentInCourses() {
 
-        Course math = new Course("MAT1", "Math");
-        Course history = new Course("HIS1", "History");
+        Course math = new Course(CourseCode.create("MAT1"), "Math");
+        Course history = new Course(CourseCode.create("HIS1"), "History");
         fakeCourseRepository.addCourse(math);
         fakeCourseRepository.addCourse(history);
-        fakeStudentRepository.addStudent(new Student("Farah", "Ashqar", 1));
+        fakeStudentRepository.addStudent(new Student(StudentName.create("Farah"), StudentName.create("Ashqar"), 1, "farah.ashqar@mail.university.com", "gdf"));
         registerStudentInCourseUseCase.registerStudentInCourse(1, math);
         registerStudentInCourseUseCase.registerStudentInCourse(1, history);
 
 
         List<Course> studentCourses = fakeStudentRepository.getStudentByID(1).getStudentCourses();
         List<Course> expectedCourses = new ArrayList<>();
-        expectedCourses.add(new Course("MAT1", "Math"));
-        expectedCourses.add(new Course("HIS1", "History"));
+        expectedCourses.add(new Course(CourseCode.create("MAT1"), "Math"));
+        expectedCourses.add(new Course(CourseCode.create("HIS1"), "History"));
         assertThat(studentCourses, containsInAnyOrder(expectedCourses.toArray()));
     }
 }

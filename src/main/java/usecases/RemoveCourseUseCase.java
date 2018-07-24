@@ -1,15 +1,16 @@
 package usecases;
 
+import domain.CourseCode;
 import repositories.CourseRepository;
 
-public class RemoveCourseUseCase {
+class RemoveCourseUseCase {
     private final CourseRepository courseRepository;
 
-    public RemoveCourseUseCase(CourseRepository courseRepository) {
+    RemoveCourseUseCase(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
-    public void removeCourse(String courseCode) {
+    void removeCourse(CourseCode courseCode) {
         courseRepository.deleteCourse(courseCode);
     }
 }

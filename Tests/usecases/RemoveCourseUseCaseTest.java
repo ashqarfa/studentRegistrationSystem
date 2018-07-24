@@ -1,5 +1,6 @@
 package usecases;
 
+import domain.CourseCode;
 import fakerepositories.FakeCourseRepository;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class RemoveCourseUseCaseTest {
 
     @Test
     public void testRemovingCourses() {
-        removeCourseUseCase.removeCourse("MAT1");
-        assertFalse(fakeCourseRepository.isOffered("MAT1"));
+        removeCourseUseCase.removeCourse(CourseCode.create("MAT1"));
+        assertFalse(fakeCourseRepository.isOffered(CourseCode.create("MAT1")));
     }
 }

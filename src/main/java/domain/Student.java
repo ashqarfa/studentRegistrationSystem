@@ -2,62 +2,52 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Student {
 
-    private String firstName;
-    private String lastName;
+    private StudentName firstName;
+    private StudentName lastName;
     private int studentID;
-    private AccountCreator account = null;
+    private String email;
+    private String password;
     private List<Course> studentCourses = new ArrayList<>();
 
-    public Student(String firstName, String lastName, int studentID) {
+    public Student(StudentName firstName, StudentName lastName, int studentID, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentID = studentID;
+        this.email = email;
+        this.password = password;
     }
 
-    public AccountCreator getAccount() {
-        return account;
+    static public Student createStudentIfValid(StudentName firstName, StudentName lastName, String password, List<Student> studentList) throws IllegalArgumentException {
+        String studentEmail = createUniqueEmailAddress(firstName, lastName, studentList);
+        return new Student(firstName, lastName, studentList.size() + 1, studentEmail, password);
     }
 
-    long numberOfNameDuplicates(List<Student> students) {
-        return students.stream().filter(st -> (st.firstName.equals(this.firstName)) && (st.lastName.equals(this.lastName))).count();
+    static long numberOfNameDuplicates(StudentName firstName, StudentName lastName, List<Student> students) {
+        return students.stream().filter(st -> (st.firstName.equals(firstName)) && (st.lastName.equals(lastName))).count();
     }
 
-
-    static private boolean validateStudent(String firstName, String lastName, String password) throws IllegalArgumentException {
-
-        if (firstName.isEmpty() || lastName.isEmpty() || password.isEmpty()) {
-            throw new IllegalArgumentException("cannot have empty argument");
-        }
-
-        if (firstName.matches(".*[^A-Za-z].*") || lastName.matches(".*[^A-Za-z].*")) {
-            throw new IllegalArgumentException("names can only contain letters");
-        }
-
-        return true;
+    private static String createUniqueEmailAddress(StudentName firstName, StudentName lastName, List<Student> studentList) {
+        long numDuplicates = numberOfNameDuplicates(firstName, lastName, studentList);
+        if (numDuplicates == 0) return simpleEmail(firstName, lastName);
+        else return complexEmail(firstName, lastName, numDuplicates);
     }
 
-    static public Student createStudentIfValid(String firstName, String lastName, String password, List<Student> studentList) throws IllegalArgumentException {
-
-        validateStudent(firstName, lastName, password);
-        Student newStudent = new Student(firstName, lastName, studentList.size() + 1);
-        AccountCreator newAccount = AccountCreator.createAccount(newStudent, password, studentList);
-        newStudent.setAccount(newAccount);
-        return newStudent;
+    private static String simpleEmail(StudentName firstName, StudentName lastName) {
+        return firstName.getName().toLowerCase() + "." + lastName.getName().toLowerCase() + "@mail.university.com";
     }
 
-    private void setAccount(AccountCreator account) {
-        this.account = account;
+    private static String complexEmail(StudentName firstName, StudentName lastName, long numDuplicates) {
+        return firstName.getName().toLowerCase() + "." + lastName.getName().toLowerCase() + (numDuplicates + 1) + "@mail.university.com";
     }
 
-    public String getFirstName() {
+    public StudentName getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
+    public StudentName getLastName() {
         return lastName;
     }
 
@@ -65,19 +55,15 @@ public class Student {
         return studentID;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public List<Course> getStudentCourses() {
         return studentCourses;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return studentID == student.studentID &&
-                Objects.equals(firstName, student.firstName) &&
-                Objects.equals(lastName, student.lastName) &&
-                Objects.equals(account, student.account) &&
-                Objects.equals(studentCourses, student.studentCourses);
+    public String getPassword() {
+        return password;
     }
 }

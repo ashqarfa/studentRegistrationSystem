@@ -4,22 +4,15 @@ import java.util.Objects;
 
 public class Course {
 
-    private final String courseCode;
+    private final CourseCode courseCode;
     private final String courseName;
 
-    public Course(String courseCode, String courseName) {
+    public Course(CourseCode courseCode, String courseName) {
         this.courseCode = courseCode;
         this.courseName = courseName;
     }
 
-    public static Course create(String courseCode, String courseName) {
-        if (courseCode.matches(".*[^A-Z0-9].*")) {
-            throw new IllegalArgumentException("Invalid arguments");
-        }
-        return new Course(courseCode, courseName);
-    }
-
-    public String getCourseCode() {
+    public CourseCode getCourseCode() {
         return courseCode;
     }
 

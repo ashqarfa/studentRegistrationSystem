@@ -1,17 +1,18 @@
 package usecases;
 
 import domain.Course;
+import domain.CourseCode;
 import repositories.CourseRepository;
 
-public class AddNewCourseUseCase {
+class AddNewCourseUseCase {
     private final CourseRepository courseRepository;
 
-    public AddNewCourseUseCase(CourseRepository courseRepository) {
+    AddNewCourseUseCase(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
-    public void addNewCourse(String courseCode, String courseName) throws IllegalArgumentException {
-        Course course = Course.create(courseCode, courseName);
+    void addNewCourse(CourseCode courseCode, String courseName) throws IllegalArgumentException {
+        Course course = new Course(courseCode, courseName);
         courseRepository.addCourse(course);
     }
 }

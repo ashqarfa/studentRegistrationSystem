@@ -1,5 +1,6 @@
 package usecases;
 
+import domain.CourseCode;
 import fakerepositories.FakeCourseRepository;
 import org.junit.Test;
 
@@ -13,12 +14,12 @@ public class AddNewCourseUseCaseTest {
 
     @Test
     public void testAddingCourses() {
-        newCourseUseCase.addNewCourse("MAT1", "Math");
-        assertTrue(fakeCourseRepository.isOffered("MAT1"));
+        newCourseUseCase.addNewCourse(CourseCode.create("MAT1"), "Math");
+        assertTrue(fakeCourseRepository.isOffered(CourseCode.create("MAT1")));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCourseCode() {
-        newCourseUseCase.addNewCourse("maT1", "Math");
+        newCourseUseCase.addNewCourse(CourseCode.create("maT1"), "Math");
     }
 }
