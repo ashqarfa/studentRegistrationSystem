@@ -1,7 +1,5 @@
-package testcases;
+package domain;
 
-import domain.AccountCreator;
-import domain.Student;
 import fakerepositories.FakeStudentRepository;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,17 +11,22 @@ import static org.junit.Assert.assertEquals;
 
 public class AccountCreatorTest {
 
-    private static List<Student> allStudents = new ArrayList<>();
+    private static List<Student> allStudents;
+    private static FakeStudentRepository fakeStudentRepository;
+
 
     @BeforeClass
     public static void setUp() {
 
-        FakeStudentRepository fakeStudentRepository = new FakeStudentRepository();
+        allStudents = new ArrayList<>();
+        fakeStudentRepository = new FakeStudentRepository();
+        fakeStudentRepository.clear();
         fakeStudentRepository.addStudent(new Student("Jozef", "Bernat", 1));
         fakeStudentRepository.addStudent(new Student("Jozef", "Bernat", 2));
         fakeStudentRepository.addStudent(new Student("Farah", "Ashqar", 3));
         fakeStudentRepository.addStudent(new Student("Fero", "Bernat", 4));
         allStudents = fakeStudentRepository.getAllStudents();
+
     }
 
 
@@ -37,6 +40,7 @@ public class AccountCreatorTest {
 
     @Test
     public void createEmailAddressWithOneDuplicate() {
+
         String expectedEmail = "farah.ashqar2@mail.university.com";
         Student student = new Student("Farah", "Ashqar", 5);
         String actualEmail = AccountCreator.createUniqueEmailAddress(student, allStudents);

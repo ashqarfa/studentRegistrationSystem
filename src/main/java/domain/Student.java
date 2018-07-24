@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Student {
 
@@ -21,8 +22,8 @@ public class Student {
         return account;
     }
 
-    static long numberOfNameDuplicates(Student student, List<Student> students) {
-        return students.stream().filter(st -> (st.firstName.equals(student.firstName)) && (st.lastName.equals(student.lastName))).count();
+    long numberOfNameDuplicates(List<Student> students) {
+        return students.stream().filter(st -> (st.firstName.equals(this.firstName)) && (st.lastName.equals(this.lastName))).count();
     }
 
 
@@ -68,4 +69,15 @@ public class Student {
         return studentCourses;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return studentID == student.studentID &&
+                Objects.equals(firstName, student.firstName) &&
+                Objects.equals(lastName, student.lastName) &&
+                Objects.equals(account, student.account) &&
+                Objects.equals(studentCourses, student.studentCourses);
+    }
 }

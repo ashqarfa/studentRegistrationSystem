@@ -1,11 +1,10 @@
-package testcases;
+package usecases;
 
 import domain.Course;
 import domain.Student;
 import fakerepositories.FakeCourseRepository;
 import fakerepositories.FakeStudentRepository;
 import org.junit.Test;
-import usecases.RegisterStudentInCourseUseCase;
 
 import java.util.ArrayList;
 import java.util.List;

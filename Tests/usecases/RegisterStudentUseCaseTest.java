@@ -1,9 +1,8 @@
-package testcases;
+package usecases;
 
 import fakerepositories.FakeStudentRepository;
 import org.junit.Before;
 import org.junit.Test;
-import usecases.RegisterStudentUseCase;
 
 import java.util.stream.IntStream;
 

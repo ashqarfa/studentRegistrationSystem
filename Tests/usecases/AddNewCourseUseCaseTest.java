@@ -1,8 +1,7 @@
-package testcases;
+package usecases;
 
 import fakerepositories.FakeCourseRepository;
 import org.junit.Test;
-import usecases.AddNewCourseUseCase;
 
 import static org.junit.Assert.assertTrue;
 

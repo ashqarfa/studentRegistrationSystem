@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AccountCreator {
 
@@ -27,8 +28,8 @@ public class AccountCreator {
         return new AccountCreator(studentEmail, password, student);
     }
 
-    public static String createUniqueEmailAddress(Student student, List<Student> studentList) {
-        long numDuplicates = Student.numberOfNameDuplicates(student, studentList);
+    static String createUniqueEmailAddress(Student student, List<Student> studentList) {
+        long numDuplicates = student.numberOfNameDuplicates(studentList);
         if (numDuplicates == 0) return simpleEmail(student);
         else return complexEmail(student, numDuplicates);
     }
@@ -40,4 +41,15 @@ public class AccountCreator {
     private static String complexEmail(Student student, long numDuplicates) {
         return student.getFirstName().toLowerCase() + "." + student.getLastName().toLowerCase() + (numDuplicates + 1) + "@mail.university.com";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountCreator that = (AccountCreator) o;
+        return Objects.equals(email, that.email) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(student, that.student);
+    }
+
 }
