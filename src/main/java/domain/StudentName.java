@@ -28,8 +28,7 @@ public class StudentName {
         }
     }
 
-
-    public String createEmail(StudentRegistrationService service) {
+    String createEmail(StudentRegistrationService service) {
         long numDuplicates = service.count(this);
         return numDuplicates == 0 ? simpleEmail() : complexEmail(numDuplicates);
     }
